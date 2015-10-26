@@ -1,0 +1,5 @@
+C:\Source\Training\QA++\Challenge4\bin\Debug\Challenge4.exe.config
+C:\Source\Training\QA++\Challenge4\bin\Debug\Challenge4.exe
+C:\Source\Training\QA++\Challenge4\bin\Debug\Challenge4.pdb
+C:\Source\Training\QA++\Challenge4\obj\Debug\Challenge4.exe
+C:\Source\Training\QA++\Challenge4\obj\Debug\Challenge4.pdb
