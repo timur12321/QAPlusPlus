@@ -1,5 +1,0 @@
-C:\Source\Training\QA++\Challenge1\bin\Debug\Challenge1.exe.config
-C:\Source\Training\QA++\Challenge1\bin\Debug\Challenge1.exe
-C:\Source\Training\QA++\Challenge1\bin\Debug\Challenge1.pdb
-C:\Source\Training\QA++\Challenge1\obj\Debug\Challenge1.exe
-C:\Source\Training\QA++\Challenge1\obj\Debug\Challenge1.pdb

@@ -1,6 +1,0 @@
-C:\Source\Training\QA++\Challenge3\bin\Debug\Challenge3.exe.config
-C:\Source\Training\QA++\Challenge3\bin\Debug\Challenge3.exe
-C:\Source\Training\QA++\Challenge3\bin\Debug\Challenge3.pdb
-C:\Source\Training\QA++\Challenge3\obj\Debug\Challenge3.exe
-C:\Source\Training\QA++\Challenge3\obj\Debug\Challenge3.pdb
-C:\Source\Training\QA++\Challenge3\obj\Debug\Challenge3.csprojResolveAssemblyReference.cache
