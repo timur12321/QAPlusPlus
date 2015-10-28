@@ -12,14 +12,14 @@ namespace Challenge4
     {
         private static void Main(string[] args)
         {
-            //Write to console
+            // Write to console
             Console.WriteLine("QA++ Challenge 4");
             Console.WriteLine("================");
             Console.WriteLine("\nThis program will generate all possible test scenarios for two parameters.");
 
             while (true)
             {
-                //Read parameter values from console
+                // Read parameter values from console
                 Console.Write("\nNumber of parameters: ");
                 int parameterCount = Convert.ToInt32(Console.ReadLine());
 
@@ -37,16 +37,16 @@ namespace Challenge4
                     }
                 }
 
-                //Generate test scenarios
+                // Generate test scenarios
                 Console.WriteLine("\nPress enter for all test scenarios...");
                 Console.ReadLine();
                 TestScenarioEngine testScenarioEngine = new TestScenarioEngine();
                 int scenarioCount = testScenarioEngine.Print(parameterArray);
 
-                //Print count to command line
+                // Print count to command line
                 Console.WriteLine("\nSCENARIO COUNT = " + scenarioCount);
 
-                //Exit after Enter
+                // Exit after Enter
                 Console.WriteLine("\n\nPress Enter to repeat or type 'q' to quit...");
                 if (Console.ReadLine() == "q")
                     break;
@@ -63,23 +63,29 @@ namespace Challenge4
 
             foreach (var value in parameters[pos])
             {
-                //First parameter - reset string
+                // First parameter - reset string
                 if (pos == 0)
+                {
                     currentScenario = value;
-                //Not first parmeter - add current parameter value
+                }
                 else
+                {
+                    // Not first parmeter - add current parameter value
                     currentScenario = scenario + " : " + value;
-
-                //Last parameter - print scenario and add 1 to count
-                if (pos+1 == parameters.Length)
+                }
+                 
+                // Last parameter - print scenario and add 1 to count
+                if (pos + 1 == parameters.Length)
                 {
                     Console.WriteLine(currentScenario);
                     count++;
                 }
-                //Not last parameter - recursive call to get next parameter value
-                //Add return value to count
                 else
-                    count += Print(parameters, pos+1, currentScenario);
+                {
+                    // Not last parameter - recursive call to get next parameter value
+                    // Add return value to count
+                    count += Print(parameters, pos + 1, currentScenario);
+                }
             }
             return count;
         }
