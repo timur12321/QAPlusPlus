@@ -7,8 +7,8 @@
     <ProjectGuid>{5BE3403C-9616-4B3B-8261-29878FFCC625}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Challenge6</RootNamespace>
-    <AssemblyName>Challenge6</AssemblyName>
+    <RootNamespace>Challenge7</RootNamespace>
+    <AssemblyName>Challenge7</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
