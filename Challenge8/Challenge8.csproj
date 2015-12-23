@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{48953B2A-2DF1-4D32-B0E7-FD9D0B36C6CA}</ProjectGuid>
+    <ProjectGuid>{A2BB181D-2560-42F0-9EBB-9B70B6E4414E}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Challenge8</RootNamespace>
@@ -43,10 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Node.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rover.cs" />
-    <Compile Include="Terrain.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
