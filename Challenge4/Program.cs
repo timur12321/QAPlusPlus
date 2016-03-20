@@ -58,34 +58,23 @@ namespace Challenge4
     {
         internal int Print(string[][] parameters, int pos = 0, string scenario = "")
         {
-            string currentScenario;
             int count = 0;
 
             foreach (var value in parameters[pos])
             {
-                // First parameter - reset string
+                string currentScenario;
                 if (pos == 0)
-                {
                     currentScenario = value;
-                }
                 else
-                {
-                    // Not first parmeter - add current parameter value
                     currentScenario = scenario + " : " + value;
-                }
-                 
-                // Last parameter - print scenario and add 1 to count
+                
                 if (pos + 1 == parameters.Length)
                 {
                     Console.WriteLine(currentScenario);
                     count++;
                 }
                 else
-                {
-                    // Not last parameter - recursive call to get next parameter value
-                    // Add return value to count
                     count += Print(parameters, pos + 1, currentScenario);
-                }
             }
             return count;
         }
