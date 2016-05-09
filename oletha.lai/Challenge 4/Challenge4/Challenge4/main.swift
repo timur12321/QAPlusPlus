@@ -8,33 +8,35 @@
 
 import Foundation
 
-///// Recursive function to calculate factorial.
-//func recursiveFactorial(n: UInt) -> UInt {
-//    if n == 1 {
-//        return 1
-//    } else if n < 1 {
-//        print("Invalid input")
-//        return 0
-//    }
-//    return n * recursiveFactorial(n-1)
-//}
-//
-///// Looping function to calculate factorial.
-//func loopingFactorial(n: UInt) -> UInt {
-//    var total: UInt = 1
-//    if n < 1 {
-//        print("Invalid input")
-//        return 0
-//    }
-//    for i in 1...n {
-//        total = total * i
-//    }
-//    return total
-//}
-//
-//let n: UInt = 4
-//print(recursiveFactorial(n))
-//print(loopingFactorial(n))
+/**
+/// Recursive function to calculate factorial.
+func recursiveFactorial(n: UInt) -> UInt {
+    if n == 1 {
+        return 1
+    } else if n < 1 {
+        print("Invalid input")
+        return 0
+    }
+    return n * recursiveFactorial(n-1)
+}
+
+/// Looping function to calculate factorial.
+func loopingFactorial(n: UInt) -> UInt {
+    var total: UInt = 1
+    if n < 1 {
+        print("Invalid input")
+        return 0
+    }
+    for i in 1...n {
+        total = total * i
+    }
+    return total
+}
+
+let n: UInt = 4
+print(recursiveFactorial(n))
+print(loopingFactorial(n))
+*/
 
 extension String {
 
@@ -76,25 +78,34 @@ func getUserInput() -> [[String]] {
 
 /// Combines two strings to make a "test case".
 func combineStrings(a: String, b: String) -> String {
-    return "\(a.strip()) / \(b.strip())"
+    return "OS: \(a.strip()) / Browser: \(b.strip())"
 }
 
-/// Uses recursion to generate combinations from a 2D array.
+/// Uses recursion to generate combinations of a constant and an array of strings.
 func generateCombinations(array: [String], const: String) -> [String] {
     if array.isEmpty {
         return [String]()
     }
-    let result = [combineStrings(array[0], b: const)]
+    let result = [combineStrings(const, b: array[0])]
     var newArray = array
     newArray.removeFirst()
     return result + generateCombinations(newArray, const: const)
 }
 
-let inputs = getUserInput()
-var scenarios: [String] = []
-for i in 0..<inputs[0].count {
-    scenarios += generateCombinations(inputs[1], const: inputs[0][i])
+/// Uses recursion to generate all combinations of two arrays of strings.
+func generateAllCombinations(firstArray: [String], secondArray: [String]) -> [String] {
+    if firstArray.isEmpty {
+        return [String]()
+    }
+    let result = generateCombinations(secondArray, const: firstArray[0])
+    var newFirstArray = firstArray
+    newFirstArray.removeFirst()
+    return result + generateAllCombinations(newFirstArray, secondArray: secondArray)
 }
+
+// Get scenarios
+let inputs = getUserInput()
+var scenarios: [String] = generateAllCombinations(inputs[0], secondArray: inputs[1])
 
 // Print combinations
 print("")
