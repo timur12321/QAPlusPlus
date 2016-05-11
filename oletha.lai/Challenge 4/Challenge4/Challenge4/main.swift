@@ -82,25 +82,35 @@ func combineStrings(a: String, b: String) -> String {
 }
 
 /// Uses recursion to generate combinations of a constant and an array of strings.
-func generateCombinations(array: [String], const: String) -> [String] {
+func generateCombinations(array: [String], const: String, accumulatedCombinations: [String] = [String]()) -> [String] {
     if array.isEmpty {
-        return [String]()
+        return accumulatedCombinations
     }
-    let result = [combineStrings(const, b: array[0])]
+    // Generate a combination
+    let newCombination = combineStrings(const, b: array[0])
+    // Add the combination to the already-accumulated combinations
+    var newCombinations = accumulatedCombinations
+    newCombinations.append(newCombination)
+    // Remove the used item
     var newArray = array
     newArray.removeFirst()
-    return result + generateCombinations(newArray, const: const)
+
+    // Use tail recursion to complete the combination generation
+    return generateCombinations(newArray, const: const, accumulatedCombinations: newCombinations)
 }
 
 /// Uses recursion to generate all combinations of two arrays of strings.
-func generateAllCombinations(firstArray: [String], secondArray: [String]) -> [String] {
+func generateAllCombinations(firstArray: [String], secondArray: [String], accumulatedCombinations: [String] = [String]()) -> [String] {
     if firstArray.isEmpty {
-        return [String]()
+        return accumulatedCombinations
     }
-    let result = generateCombinations(secondArray, const: firstArray[0])
+    // Generate a set of combinations
+    let newCombinationSet = generateCombinations(secondArray, const: firstArray[0])
+    // Add the set of combinations to the already-accumulated combinations
+    let newCombinations = accumulatedCombinations + newCombinationSet
     var newFirstArray = firstArray
     newFirstArray.removeFirst()
-    return result + generateAllCombinations(newFirstArray, secondArray: secondArray)
+    return generateAllCombinations(newFirstArray, secondArray: secondArray, accumulatedCombinations: newCombinations)
 }
 
 // Get scenarios
