@@ -64,17 +64,24 @@ namespace Challenge4
             {
                 string currentScenario;
                 if (pos == 0)
+                {
                     currentScenario = value;
+                }
                 else
+                {
                     currentScenario = scenario + " : " + value;
-                
+                }
+
                 if (pos + 1 == parameters.Length)
                 {
                     Console.WriteLine(currentScenario);
                     count++;
                 }
                 else
+                {
                     count += Print(parameters, pos + 1, currentScenario);
+
+                }
             }
             return count;
         }
