@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.PerformanceData;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Challenge4
 {
@@ -12,78 +6,83 @@ namespace Challenge4
     {
         private static void Main(string[] args)
         {
-            // Write to console
             Console.WriteLine("QA++ Challenge 4");
             Console.WriteLine("================");
-            Console.WriteLine("\nThis program will generate all possible test scenarios for two parameters.");
+            Console.WriteLine("\nThis program will generate all possible combinations for any number of parameters.");
 
-            while (true)
+            string[][] parameters = RetrieveParameters();
+
+            Console.WriteLine("\nPress enter for all test scenarios...");
+            Console.ReadLine();
+
+            TestParameters testParameters = new TestParameters();
+            string[] allScenarios = testParameters.ComputeAllCombinations(parameters, 0, string.Empty);
+
+            Print(allScenarios);
+        }
+
+        private static string[][] RetrieveParameters()
+        {
+            Console.Write("\nNumber of parameters: ");
+            int parameterCount = Convert.ToInt32(Console.ReadLine());
+            string[][] parameters = new string[parameterCount][];
+
+            for (int i = 0; i < parameterCount; i++)
             {
-                // Read parameter values from console
-                Console.Write("\nNumber of parameters: ");
-                int parameterCount = Convert.ToInt32(Console.ReadLine());
-
-                string[][] parameterArray = new string[parameterCount][];
-                for (int x = 0; x < parameterCount; x++)
-                {
-                    Console.Write("\nParameter " + x + ". Number of values: ");
-                    int valueCount = Convert.ToInt32(Console.ReadLine());
-
-                    parameterArray[x] = new string[valueCount];
-                    for (int y = 0; y < valueCount; y++)
-                    {
-                        Console.Write("Value " + y + ": ");
-                        parameterArray[x][y] = Console.ReadLine();
-                    }
-                }
-
-                // Generate test scenarios
-                Console.WriteLine("\nPress enter for all test scenarios...");
-                Console.ReadLine();
-                TestScenarioEngine testScenarioEngine = new TestScenarioEngine();
-                int scenarioCount = testScenarioEngine.Print(parameterArray);
-
-                // Print count to command line
-                Console.WriteLine("\nSCENARIO COUNT = " + scenarioCount);
-
-                // Exit after Enter
-                Console.WriteLine("\n\nPress Enter to repeat or type 'q' to quit...");
-                if (Console.ReadLine() == "q")
-                    break;
+                parameters[i] = RetrieveParameterValues(i);
             }
+
+            return parameters;
+        }
+
+        private static string[] RetrieveParameterValues(int parameterNumber)
+        {
+            Console.Write("\nParameter " + parameterNumber + ". Number of values: ");
+            int parameterValuesCount = Convert.ToInt32(Console.ReadLine());
+            string[] parameterValues = new string[parameterValuesCount];
+
+            for (int i = 0; i < parameterValuesCount; i++)
+            {
+                Console.Write("Value " + i + ": ");
+                parameterValues[i] = Console.ReadLine();
+            }
+
+            return parameterValues;
+        }
+
+        private static void Print(string[] allScenarios)
+        {
+            int scenarioCount = 0;
+            foreach (var scenario in allScenarios)
+            {
+                Console.WriteLine(scenario);
+                scenarioCount++;
+            }
+
+            Console.WriteLine("\nSCENARIO COUNT = " + scenarioCount);
+            Console.ReadLine();
         }
     }
 
-    internal class TestScenarioEngine
+    internal class TestParameters
     {
-        internal int Print(string[][] parameters, int pos = 0, string scenario = "")
+        internal string[] ComputeAllCombinations(string[][] parameters, int pos, string combination)
         {
-            int count = 0;
-
-            foreach (var value in parameters[pos])
+            string[] allCombinations = new string[0];
+            foreach (var currentParameter in parameters[pos])
             {
-                string currentScenario;
-                if (pos == 0)
+                string currentCombination = combination + " " + currentParameter;
+
+                if (pos == parameters.Length - 1)
                 {
-                    currentScenario = value;
+                    allCombinations = allCombinations.AddElement(currentCombination);
                 }
                 else
                 {
-                    currentScenario = scenario + " : " + value;
-                }
-
-                if (pos + 1 == parameters.Length)
-                {
-                    Console.WriteLine(currentScenario);
-                    count++;
-                }
-                else
-                {
-                    count += Print(parameters, pos + 1, currentScenario);
-
+                    allCombinations = allCombinations.Concatente(ComputeAllCombinations(parameters, pos + 1, currentCombination));
                 }
             }
-            return count;
+            return allCombinations;
         }
     }
 }
