@@ -25,15 +25,13 @@ let browsers = browser_input?.characters.split{$0 == ","}.map(String.init)
 // Generate combinations
 var scenarios: [String] = []
 var i = 0
-if let bs = browsers {
-	if let os = oss {
-		while i < os.count {
-			for browser in bs {
-				scenarios.append("OS: \(os[i].strip()) / Browser: \(browser.strip())")
-			}
-			i += 1
-		}
-	}
+if let browsers = browsers, oss = oss {
+    while i < oss.count {
+        for browser in browsers {
+            scenarios.append("OS: \(oss[i].strip()) / Browser: \(browser.strip())")
+        }
+        i += 1
+    }
 }
 
 // Print combinations
