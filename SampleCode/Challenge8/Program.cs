@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.InteropServices;
 
 namespace Challenge8
 {
@@ -59,26 +58,17 @@ namespace Challenge8
 
         private static void CountAllNodes()
         {
-            Node currentNode = _head;
-            int count = 0;
-            while (currentNode != null)
+            if (_head != null)
             {
-                count++;
-                currentNode = currentNode.Next;
+                Console.WriteLine("Nodes count: " + _head.CountAllNodes());
             }
-
-            Console.WriteLine("Nodes count: " + count);
         }
 
         private static void PrintAllNodes()
         {
-            Node currentNode = _head;
-            int count = 0;
-            while (currentNode != null)
+            if (_head != null)
             {
-                count++;
-                Console.WriteLine(count + ". " + currentNode.Data);
-                currentNode = currentNode.Next;
+                _head.PrintAllNodes();
             }
         }
 
@@ -86,7 +76,7 @@ namespace Challenge8
         {
             if (_head != null)
             {
-                _head = _head.Next;
+                _head = _head.Delete();
                 Console.WriteLine("Node removed.");
             }
             else
@@ -98,10 +88,7 @@ namespace Challenge8
         private static void AddNode()
         {
             Console.WriteLine("Enter data for new node:");
-            Node newNode = new Node();
-            newNode.Data = RetrieveUserInput();
-            newNode.Next = _head;
-            _head = newNode;
+            _head = new Node(RetrieveUserInput(), _head);
             Console.WriteLine("New node added.");
         }
 

@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Challenge6
-{
-    using System.ComponentModel.Design;
-    using System.Runtime.Remoting.Messaging;
-    using System.Threading;
-
-    enum UserType {Business, Social};
+{    enum UserType {Business, Social};
 
     public class Program
     {
@@ -18,9 +9,9 @@ namespace Challenge6
         private const string OptionsMessage = "Choose an option or type ? for help\n\n#1 - Start new chat session\n#2 - Set/Change Usernames\n#3 - Switch user\n#9 - Exit";
         private const string Prompt = ">";
 
-        private static string chatHistory;
-        private static string[][] users = new string[2][];
-        private static int? currentUserId = null;
+        private static string _chatHistory;
+        private static string[][] _users = new string[2][];
+        private static int? _currentUserId = null;
 
 
         public static void Main(string[] args)
@@ -59,9 +50,9 @@ namespace Challenge6
 
         private static string GetUserInput()
         {
-            string prompt = currentUserId == null
+            string prompt = _currentUserId == null
                 ? Prompt
-                : users[(int)currentUserId][0] + " " + Prompt;
+                : _users[(int)_currentUserId][0] + " " + Prompt;
 
             Console.Write(Environment.NewLine + prompt);
             return Console.ReadLine();
@@ -69,9 +60,9 @@ namespace Challenge6
 
         private static void StartNewChatSession()
         {
-            chatHistory = string.Empty;
+            _chatHistory = string.Empty;
 
-            if (users[0] == null || users[1] == null)
+            if (_users[0] == null || _users[1] == null)
             {
                 SetUsernames();
             }
@@ -91,33 +82,33 @@ namespace Challenge6
                 return;
             }
 
-            if (userId < 0 || userId > users.Length - 1)
+            if (userId < 0 || userId > _users.Length - 1)
             {
                 Console.Write("User " + userId + " does not exist.");
             }
 
-            currentUserId = userId;
+            _currentUserId = userId;
         }
 
         private static void SetUsernames()
         {
-            for (int x = 0; x < users.Length; x++)
+            for (int x = 0; x < _users.Length; x++)
             {
-                users[x] = new string[2];
+                _users[x] = new string[2];
                 Console.Write("\nEnter name of User {0} : ", x);
-                users[x][0] = Console.ReadLine();
-                users[x][1] = ((UserType)new Random().Next(0, 2)).ToString();
-                Console.WriteLine("User type: {0}", users[x][1]);
+                _users[x][0] = Console.ReadLine();
+                _users[x][1] = ((UserType)new Random().Next(0, 2)).ToString();
+                Console.WriteLine("User type: {0}", _users[x][1]);
             }
 
-            currentUserId = 0;
+            _currentUserId = 0;
         }
 
         private static void SendMessage(string message)
         {
-            if (currentUserId != null)
+            if (_currentUserId != null)
             {
-                chatHistory = chatHistory 
+                _chatHistory = _chatHistory 
                               + Environment.NewLine
                               + DateTime.Now.Hour.ToString("00")
                               + ":"
@@ -125,11 +116,11 @@ namespace Challenge6
                               + ":"
                               + DateTime.Now.Second.ToString("00")
                               + " "
-                              + users[(int)currentUserId][0]
+                              + _users[(int)_currentUserId][0]
                               + " - "
                               + message;
                 Console.Clear();
-                Console.WriteLine(chatHistory);
+                Console.WriteLine(_chatHistory);
             }
         }
 
