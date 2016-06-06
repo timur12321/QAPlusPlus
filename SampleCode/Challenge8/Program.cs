@@ -62,6 +62,10 @@ namespace Challenge8
             {
                 Console.WriteLine("Nodes count: " + _head.CountAllNodes());
             }
+            else
+            {
+                Console.WriteLine("No nodes to count.");
+            }
         }
 
         private static void PrintAllNodes()
@@ -69,6 +73,10 @@ namespace Challenge8
             if (_head != null)
             {
                 _head.PrintAllNodes();
+            }
+            else
+            {
+                Console.WriteLine("No nodes to print.");
             }
         }
 

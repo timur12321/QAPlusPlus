@@ -5,8 +5,8 @@ namespace Challenge8
 {
     public class Node
     {
-        private string _data = String.Empty;
-        private Node _next = null;
+        private string _data;
+        private Node _next;
 
         public Node(string nodeData, Node nextNode)
         {
