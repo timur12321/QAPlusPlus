@@ -1,7 +1,8 @@
 ﻿using System;
 
-namespace Challenge6
-{    enum UserType {Business, Social};
+namespace Challenge7
+{
+    enum UserType {Business, Social};
 
     public class Program
     {
