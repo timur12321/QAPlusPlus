@@ -14,11 +14,6 @@ namespace Challenge8
             _next = nextNode;
         }
 
-        public string GetNodeData()
-        {
-            return _data;
-        }
-
         public Node Delete()
         {
             return _next;
