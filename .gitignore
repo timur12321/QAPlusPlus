@@ -188,3 +188,13 @@ $RECYCLE.BIN/
 #####
 # End of core ignore list, below put you custom 'per project' settings (patterns or path)
 #####
+
+#####
+# Vamsi git ignore files
+#####
+
+*.pyc
+*.swp
+*-vamsi.ini
+*-vamsi.featu
+
