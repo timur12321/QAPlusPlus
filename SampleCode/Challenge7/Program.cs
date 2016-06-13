@@ -9,7 +9,6 @@ namespace Challenge7
         private const string WelcomeMessage = "QA++ Challenge 7\n================\n\nWelcome to ASOS Chat\n";
         private const string OptionsMessage = "Choose an option or type ? for help\n\n#1 - Start new chat session\n#2 - Set/Change Usernames\n#3 - Switch user\n#9 - Exit";
         private const string Prompt = ">";
-
         private static string _chatHistory;
         private static string[][] _users = new string[2][];
         private static int? _currentUserId = null;
